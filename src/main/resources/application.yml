@@ -1,1 +1,21 @@
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    database: postgresql
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/user?stringtype=unspecified
+    username: user
+    password: password
+  flyway:
+    user: user
+    password: password
 
+springdoc:
+  api-docs:
+    path: /api-docs
