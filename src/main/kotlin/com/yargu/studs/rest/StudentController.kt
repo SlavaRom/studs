@@ -16,7 +16,7 @@ class StudentController(
 ) {
 
     @PostMapping
-    fun addPremiumDomain(@RequestBody studentCreateDTO: StudentCreateDTO): ResponseEntity<Any?> {
+    fun addStudent(@RequestBody studentCreateDTO: StudentCreateDTO): ResponseEntity<Any?> {
         val student = mapper.map(studentCreateDTO, Student::class.java)
         return try {
             studentService.save(student)

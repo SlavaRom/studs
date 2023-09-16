@@ -13,11 +13,7 @@ class Student {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     val id: Long? = null
 
-    var firstName: String? = null
-
-    var lastName: String? = null
-
-    var fatherName: String? = null
+    var fullName: String? = null
 
     var startedAt: Date? = null
 
