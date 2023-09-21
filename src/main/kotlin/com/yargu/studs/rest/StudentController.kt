@@ -1,6 +1,7 @@
 package com.yargu.studs.rest
 
 import com.yargu.studs.dto.StudentCreateDTO
+import com.yargu.studs.dto.StudentInfoDTO
 import com.yargu.studs.entity.Student
 import com.yargu.studs.service.StudentService
 import com.yargu.studs.utils.StudentMapper
@@ -27,7 +28,7 @@ class StudentController(
     }
 
     @GetMapping
-    fun findAll(): List<Student> {
+    fun findAll(): List<StudentInfoDTO> {
         return studentService.findAll()
     }
 

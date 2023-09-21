@@ -19,6 +19,8 @@ class Student {
 
     var educationLevel: String? = null
 
+    var departmentId: Long? = null
+
     var courseWorkId: Long? = null
 
     var graduateWorkId: Long? = null
