@@ -19,3 +19,25 @@ spring:
 springdoc:
   api-docs:
     path: /api-docs
+
+---
+spring:
+  config:
+    activate:
+      on-profile: docker
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://postgres:5432/user
+    username: user
+    password: password
+
+---
+spring:
+  config:
+    activate:
+      on-profile: local_docker
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://postgres:5432/user
+    username: user
+    password: password
