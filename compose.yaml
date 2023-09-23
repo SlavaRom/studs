@@ -23,12 +23,3 @@ services:
     ports:
       - "8080:8080"
       - "5005:5005"
-
-  studs-frontend:
-    build:
-      context: ../studs-front
-      dockerfile: Dockerfile
-    image: studs-frontend
-    restart: always
-    ports:
-      - "3000:3000"
