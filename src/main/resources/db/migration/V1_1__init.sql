@@ -4,6 +4,7 @@ create table student
 (
     id                    bigint not null primary key,
     full_name             varchar,
+    stud_number           varchar,
     department_id         bigint,
     started_at            timestamp,
     education_level       varchar,

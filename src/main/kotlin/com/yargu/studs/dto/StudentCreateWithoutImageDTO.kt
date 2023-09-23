@@ -3,7 +3,7 @@ package com.yargu.studs.dto
 import java.io.Serializable
 import java.util.*
 
-class StudentCreateDTO (
+class StudentCreateWithoutImageDTO (
     val fullName: String?,
     val studNumber: String?,
     val departmentName: String?,

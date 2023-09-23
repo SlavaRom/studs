@@ -5,6 +5,7 @@ import java.util.*
 
 class StudentInfoDTO (
     val fullName: String?,
+    val studNumber: String?,
     val departmentName: String?,
     val departmentFaculty: String?,
     val departmentHead: String?,
