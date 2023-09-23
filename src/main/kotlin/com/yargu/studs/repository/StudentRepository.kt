@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface StudentRepository : JpaRepository<Student, Long> {
-
+    fun findByStudNumber(studsNumber: String): List<Student>
 }

@@ -1,13 +1,13 @@
 package com.yargu.studs.service
 
+import com.yargu.studs.dto.StudentCreateWithoutImageDTO
 import com.yargu.studs.dto.StudentInfoDTO
-import com.yargu.studs.entity.Student
 
 interface StudentService {
 
     fun findAll(): List<StudentInfoDTO>
 
-    fun findById(id: Long): Student?
+    fun findById(id: Long): StudentInfoDTO?
 
-    fun save(student: Student)
+    fun add(student: StudentCreateWithoutImageDTO)
 }

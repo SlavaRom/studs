@@ -15,6 +15,8 @@ class Student {
 
     var fullName: String? = null
 
+    var studNumber: String? = null
+
     var startedAt: Date? = null
 
     var educationLevel: String? = null
