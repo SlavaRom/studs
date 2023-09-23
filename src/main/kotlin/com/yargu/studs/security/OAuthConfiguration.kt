@@ -15,6 +15,7 @@ class OAuthConfiguration : WebSecurityConfigurerAdapter() {
 
     override fun configure(web: WebSecurity) {
         web.ignoring().antMatchers("/student/**")
+        web.ignoring().antMatchers("/s3/**")
         web.ignoring().antMatchers("/v2/api-docs")
         web.ignoring().antMatchers("/swagger-ui/**")
         web.ignoring().antMatchers("/swagger-resources/**")

@@ -20,6 +20,10 @@ springdoc:
   api-docs:
     path: /api-docs
 
+amazon:
+  s3:
+    bucketName: studs
+
 ---
 spring:
   config:

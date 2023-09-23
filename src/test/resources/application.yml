@@ -13,3 +13,7 @@ spring:
     lazy-initialization: true
   flyway:
     enabled: false
+
+amazon:
+  s3:
+    bucketName: studs

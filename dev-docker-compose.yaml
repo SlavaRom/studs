@@ -9,6 +9,8 @@ services:
       POSTGRES_PASSWORD: password
     volumes:
       - ./.docker/postgres_db:/data/postgres
+    ports:
+      - "5432:5432"
 
   studs-backend:
     build:
