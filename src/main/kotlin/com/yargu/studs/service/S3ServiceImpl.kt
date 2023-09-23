@@ -4,14 +4,15 @@ import com.amazonaws.AmazonServiceException
 import com.amazonaws.client.builder.AwsClientBuilder
 import com.amazonaws.services.s3.AmazonS3
 import com.amazonaws.services.s3.AmazonS3ClientBuilder
+import org.apache.commons.io.FileUtils
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 import java.io.File
 import java.io.FileOutputStream
-
-
+import java.io.InputStream
+import java.nio.file.Files
 
 
 @Service
@@ -55,6 +56,21 @@ class S3ServiceImpl(
         } catch (e: AmazonServiceException) {
             logger.warn(e.errorMessage)
         }
+    }
+
+    override fun addImage(targetPath: String, inputStream: InputStream) {
+        try {
+            val tempFile = Files.createTempFile("s3-", "-$targetPath").toFile()
+            try {
+                FileUtils.copyInputStreamToFile(inputStream, tempFile)
+                s3.putObject(bucketName, targetPath, tempFile)
+            } finally {
+                FileUtils.deleteQuietly(tempFile)
+            }
+        } catch (e: AmazonServiceException) {
+            logger.warn(e.errorMessage)
+        }
+        logger.info("Object $targetPath putted into $bucketName")
     }
 
     companion object {

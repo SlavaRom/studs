@@ -1,8 +1,11 @@
 package com.yargu.studs.rest
 
+import com.yargu.studs.dto.StudentCreateWithImageDTO
 import com.yargu.studs.dto.StudentCreateWithoutImageDTO
 import com.yargu.studs.dto.StudentInfoDTO
+import com.yargu.studs.service.S3Service
 import com.yargu.studs.service.StudentService
+import com.yargu.studs.utils.StudentMapper
 import io.swagger.v3.oas.annotations.Operation
 import org.slf4j.LoggerFactory
 import org.springframework.http.HttpStatus
@@ -12,7 +15,9 @@ import org.springframework.web.bind.annotation.*
 @RestController
 @RequestMapping("/student")
 class StudentController(
-    private val studentService: StudentService
+    private val studentService: StudentService,
+    private val mapper: StudentMapper,
+    private val s3Service: S3Service
 ) {
 
     @Operation(summary = "Add new student without image", description = "All fields except studNumber are optional. studNumber unique field.")
@@ -41,12 +46,14 @@ class StudentController(
         return studentService.findById(id)
     }
 
-    @Operation(summary = "Add new student with image", description = "All fields except studNumber are optional. studNumber unique field.")
-    @PostMapping
-    fun addStudentWithImage(@RequestBody studentCreateWithoutImageDTO: StudentCreateWithoutImageDTO): ResponseEntity<Any?> {
+    @Operation(summary = "Add new student with image", description = "All fields except studNumber and image are optional. studNumber unique field.")
+    @PostMapping("/image")
+    fun addStudentWithImage(@RequestBody studentCreateWithImageDTO: StudentCreateWithImageDTO): ResponseEntity<Any?> {
         logger.info("Request to add student")
         return try {
+            val studentCreateWithoutImageDTO = mapper.map(studentCreateWithImageDTO, StudentCreateWithoutImageDTO::class.java)
             studentService.add(studentCreateWithoutImageDTO)
+            s3Service.addImage(studentCreateWithImageDTO.studNumber!!, studentCreateWithImageDTO.image.inputStream)
             ResponseEntity(HttpStatus.OK)
         } catch (ex: Exception){
             ResponseEntity(ex.message, HttpStatus.INTERNAL_SERVER_ERROR)
