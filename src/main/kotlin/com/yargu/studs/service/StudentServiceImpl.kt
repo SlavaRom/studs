@@ -1,7 +1,7 @@
 package com.yargu.studs.service
 
 import com.yargu.studs.dto.StudentCreateWithoutImageDTO
-import com.yargu.studs.dto.StudentInfoDTO
+import com.yargu.studs.dto.StudentInfoWithoutImageDTO
 import com.yargu.studs.entity.CourseWork
 import com.yargu.studs.entity.Department
 import com.yargu.studs.entity.GraduateWork
@@ -20,18 +20,18 @@ class StudentServiceImpl(
     private val graduateWorkRepository: GraduateWorkRepository
 ) : StudentService {
 
-    override fun findAll(): List<StudentInfoDTO> {
+    override fun findAll(): List<StudentInfoWithoutImageDTO> {
         val students = studentRepository.findAll()
         val departments = departmentRepository.findAll().associateBy { it.id }
         val courseWorks = courseWorkRepository.findAll().associateBy { it.id }
         val graduateWorks = graduateWorkRepository.findAll().associateBy { it.id }
 
-        val allStudentsInDetail = mutableListOf<StudentInfoDTO>()
+        val allStudentsInDetail = mutableListOf<StudentInfoWithoutImageDTO>()
         for (student in students) {
             val department = departments[student.departmentId]
             val courseWork = courseWorks[student.courseWorkId]
             val graduateWork = graduateWorks[student.graduateWorkId]
-            val studentInDetail = StudentInfoDTO(
+            val studentInDetail = StudentInfoWithoutImageDTO(
                 student.fullName,
                 student.studNumber,
                 department?.name,
@@ -52,12 +52,12 @@ class StudentServiceImpl(
     }
 
 
-    override fun findById(id: Long): StudentInfoDTO? {
+    override fun findById(id: Long): StudentInfoWithoutImageDTO? {
         val student = studentRepository.findById(id).get()
         val department = student.departmentId?.let { departmentRepository.findById(it) }?.get()
         val courseWork = student.courseWorkId?.let { courseWorkRepository.findById(it) }?.get()
         val graduateWork = student.graduateWorkId?.let { graduateWorkRepository.findById(it) }?.get()
-        return StudentInfoDTO(
+        return StudentInfoWithoutImageDTO(
             student.fullName,
             student.studNumber,
             department?.name,

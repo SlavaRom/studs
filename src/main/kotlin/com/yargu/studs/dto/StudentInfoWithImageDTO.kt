@@ -1,9 +1,10 @@
 package com.yargu.studs.dto
 
+import java.io.File
 import java.io.Serializable
 import java.util.*
 
-class StudentInfoDTO (
+class StudentInfoWithImageDTO (
     val fullName: String?,
     val studNumber: String?,
     val departmentName: String?,
@@ -16,5 +17,6 @@ class StudentInfoDTO (
     val graduateWorkGrade: Int?,
     val graduateWorkTheme: String?,
     val endAt: Date?,
-    val successfullyGraduate: Boolean?
+    val successfullyGraduate: Boolean?,
+    var image: File?
 ) : Serializable

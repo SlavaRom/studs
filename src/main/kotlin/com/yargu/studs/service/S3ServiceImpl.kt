@@ -39,9 +39,9 @@ class S3ServiceImpl(
         logger.info("Object ${file.name} putted into $bucketName")
     }
 
-    override fun getObject(name: String) {
+    override fun getObject(name: String?) {
         try {
-            val fullObject = s3.getObject(bucketName, "8CaCtaVcGrU.jpg")
+            val fullObject = s3.getObject(bucketName, name)
             val inputStream = fullObject.objectContent
             val outputFile = File("/Users/vyacheslavromanov/IdeaProjects/studs/src/main/resources/static/output.jpg")
             val outputStream = FileOutputStream(outputFile)
@@ -71,6 +71,12 @@ class S3ServiceImpl(
             logger.warn(e.errorMessage)
         }
         logger.info("Object $targetPath putted into $bucketName")
+    }
+
+    override fun getImage(targetPath: String): InputStream {
+        val responseInputStream = s3.getObject(bucketName, targetPath).objectContent
+//        IOUtils.copy(responseInputStream, outputStream)
+        return responseInputStream
     }
 
     companion object {
