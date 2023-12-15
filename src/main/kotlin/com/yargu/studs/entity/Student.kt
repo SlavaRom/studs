@@ -30,4 +30,6 @@ class Student {
     var endAt: Date? = null
 
     var successfullyGraduate: Boolean? = null
+
+    var deleted: Boolean? = null
 }

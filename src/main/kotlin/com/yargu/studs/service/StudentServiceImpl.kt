@@ -44,7 +44,8 @@ class StudentServiceImpl(
                 graduateWork?.grade,
                 graduateWork?.name,
                 student.endAt,
-                student.successfullyGraduate
+                student.successfullyGraduate,
+                student.deleted
             )
             allStudentsInDetail.add(studentInDetail)
         }
@@ -70,7 +71,8 @@ class StudentServiceImpl(
             graduateWork?.grade,
             graduateWork?.name,
             student.endAt,
-            student.successfullyGraduate
+            student.successfullyGraduate,
+            student.deleted
         )
     }
 
@@ -78,7 +80,7 @@ class StudentServiceImpl(
         if (student.studNumber.isNullOrEmpty()) {
             throw RuntimeException("StudNumber is empty")
         }
-        if (!studentRepository.findByStudNumber(student.studNumber).isNullOrEmpty()) {
+        if (!studentRepository.findByStudNumberAndDeleted(student.studNumber, false).isNullOrEmpty()) {
             throw RuntimeException("Student with same studNumber exist")
         }
         val studentInfo = Student()

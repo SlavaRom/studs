@@ -18,5 +18,6 @@ class StudentInfoWithImageDTO (
     val graduateWorkTheme: String?,
     val endAt: Date?,
     val successfullyGraduate: Boolean?,
+    val deleted: Boolean?,
     var image: File?
 ) : Serializable

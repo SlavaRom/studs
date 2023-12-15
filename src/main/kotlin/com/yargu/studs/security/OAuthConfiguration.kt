@@ -23,7 +23,6 @@ class OAuthConfiguration : WebSecurityConfigurerAdapter() {
         web.ignoring().antMatchers("/swagger-ui.html")
         web.ignoring().antMatchers("/api/swagger-ui.html")
         web.ignoring().antMatchers("/api-docs/**")
-
         web.ignoring().antMatchers("/actuator/**")
     }
 

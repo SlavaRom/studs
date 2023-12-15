@@ -65,6 +65,7 @@ class StudentController(
                 studentCreateWithImageDTO.graduateWorkGrade,
                 studentCreateWithImageDTO.graduateWorkTheme,
                 studentCreateWithImageDTO.endAt,
+                studentCreateWithImageDTO.deleted,
                 studentCreateWithImageDTO.successfullyGraduate
             )
             studentService.add(studentCreateWithoutImageDTO)
@@ -95,6 +96,7 @@ class StudentController(
             studentInfoWithoutImageDTO.graduateWorkTheme,
             studentInfoWithoutImageDTO.endAt,
             studentInfoWithoutImageDTO.successfullyGraduate,
+            studentInfoWithoutImageDTO.deleted,
             null
         )
         val tempFile = Files.createTempFile("s3-", "-${studentInfoWithoutImageDTO.studNumber!!}").toFile()

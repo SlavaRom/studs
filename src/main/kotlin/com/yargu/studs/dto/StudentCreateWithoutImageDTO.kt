@@ -16,5 +16,6 @@ class StudentCreateWithoutImageDTO (
     val graduateWorkGrade: Int?,
     val graduateWorkTheme: String?,
     val endAt: Date?,
-    val successfullyGraduate: Boolean?
+    val successfullyGraduate: Boolean?,
+    val deleted: Boolean?
 ) : Serializable
